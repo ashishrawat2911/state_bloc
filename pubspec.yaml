@@ -1,6 +1,6 @@
 name: state_bloc
-description: A new Flutter package.
-version: 0.0.2
+description: StateBloc helps the Widget tree to rebuild again with the help of streams.
+version: 0.0.6
 homepage: https://github.com/ashishrawat2911/state_bloc
 
 environment:

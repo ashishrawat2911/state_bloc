@@ -9,7 +9,7 @@ StateBloc help the Widget tree to rebuild again with the help of streams. You do
 In your flutter project add the dependency:
 
 ```yaml
-state_bloc :  0.0.1
+state_bloc :  0.0.6
   ```
 For help getting started with Flutter, view the online [documentation](https://flutter.dev).
 
@@ -57,3 +57,41 @@ stateBloc.listenToValue(listenToValue: (int value) {
 
 });
 ```
+## Managing App State with [get_it](https://pub.dev/packages/get_it)
+In your flutter project add the dependency:
+```yaml
+get_it: 3.1.0
+```
+### Register the StateBloc with GetIt.
+```dart
+GetIt appConfig = GetIt();
+
+void setupAppConfig() {
+//This will create a Singleton for the whole app
+  appConfig.registerLazySingleton(
+      () => StateBloc<DarkThemeModel>(DarkThemeModel()));
+}
+```
+if you want to register the another StateBloc with GetIt , you will have to provide the instance name.
+```dart
+GetIt appConfig = GetIt();
+
+void setupAppConfig() {
+  appConfig.registerLazySingleton(
+      () => StateBloc<DarkThemeModel>(DarkThemeModel()), "darkMode");
+}
+```
+### Register when the app runs.
+```dart
+void main() {
+  setupAppConfig();
+  runApp(MyApp());
+}
+```
+### Using StateBloc instance from the GetIt
+```dart
+StateBloc<DarkThemeModel> stateBloc= appConfig<StateBloc<DarkThemeModel>>("darkMode");
+```
+Kaboom 💣💣
+
+Now you can change the app state with StateBloc with GetIt.
