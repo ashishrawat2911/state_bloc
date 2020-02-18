@@ -12,9 +12,9 @@ typedef ChangeState<T> = T Function(T value);
 typedef ListenToState<T> = void Function(T value);
 
 /*
- Define a [BaseStateBloc]
+ Define a [StateBloc]
  Example :
- BaseStateBloc<int> stateBloc=BaseStateBloc<int>(0);
+ StateBloc<int> stateBloc=StateBloc<int>(0);
 */
 
 class StateBloc<T> {

@@ -24,11 +24,13 @@ class Counter extends StatefulWidget {
 }
 
 class _CounterState extends State<Counter> {
-  StateBloc<int> counterBloc;
+  StateBloc<int> stateBloc = StateBloc<int>(0);
 
   void initState() {
+    stateBloc.listenToValue(listenToValue: (int value) {
+      //listen to the value when changed
+    });
     super.initState();
-    counterBloc = StateBloc<int>(0);
   }
 
   Widget build(BuildContext context) {
@@ -40,18 +42,20 @@ class _CounterState extends State<Counter> {
             Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Center(
-                    child: BlocBuilder<int>(
-                        stateBloc: counterBloc,
-                        widget: (int value) {
-                          return Text("$value");
-                        }))),
+                  child: BlocBuilder<int>(
+                    stateBloc: stateBloc,
+                    widget: (int value) {
+                      return Text("$value");
+                    },
+                  ),
+                )),
             MaterialButton(
               color: Theme.of(context).primaryColor,
               child: Text(
                 'Add',
                 style: TextStyle(color: Colors.white),
               ),
-              onPressed: () => counterBloc.changeState(state: (int value) {
+              onPressed: () => stateBloc.changeState(state: (int value) {
                 ++value;
                 return value;
               }),
