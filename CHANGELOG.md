@@ -1,3 +1,3 @@
-## [0.0.1] - TODO: Add release date.
+## [0.0.1] - 18 Feb 2020.
 
-* TODO: Describe initial release.
+* StateBloc created

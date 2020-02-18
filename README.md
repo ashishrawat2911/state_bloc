@@ -2,6 +2,8 @@
 
 [![pub package](https://img.shields.io/pub/v/state_bloc.svg)](https://pub.dev/packages/state_bloc)
 
+StateBloc help the Widget tree to rebuild again with the help of streams. You do no need to create any bloc class for managing state, just need to instantiating the **StateBloc** class with an initial value.
+
 ## Getting Started
 
 In your flutter project add the dependency:
