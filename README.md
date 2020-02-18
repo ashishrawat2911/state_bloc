@@ -9,7 +9,7 @@ StateBloc help the Widget tree to rebuild again with the help of streams. You do
 In your flutter project add the dependency:
 
 ```yaml
-state_bloc :  0.0.6
+state_bloc :  0.0.7
   ```
 For help getting started with Flutter, view the online [documentation](https://flutter.dev).
 
@@ -57,6 +57,12 @@ stateBloc.listenToValue(listenToValue: (int value) {
 
 });
 ```
+
+## Don't forget to dispose the bloc
+```dart
+stateBloc.dispose();
+```
+
 ## Managing App State with [get_it](https://pub.dev/packages/get_it)
 In your flutter project add the dependency:
 ```yaml
