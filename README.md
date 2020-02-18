@@ -9,7 +9,7 @@ StateBloc help the Widget tree to rebuild again with the help of streams. You do
 In your flutter project add the dependency:
 
 ```yaml
-state_bloc :  0.0.8
+state_bloc :  1.0.0
   ```
 For help getting started with Flutter, view the online [documentation](https://flutter.dev).
 
@@ -25,8 +25,9 @@ StateBloc<int> stateBloc = StateBloc<int>(0);
 ```
 
 ### **Listen to Data using BlocBuilder**
+You will need to pass the `stateBloc` and a `widget` to BlocBuilder
 ```dart
-//Define the Generics eg : int, String, Foo.
+//Define the type of data you are using in StateBloc eg : int, String, Foo.
 BlocBuilder<int>(
   stateBloc: stateBloc,
   widget: (int value) {
@@ -64,9 +65,11 @@ stateBloc.dispose();
 ```
 
 ## Managing App State with [get_it](https://pub.dev/packages/get_it)
+get_it Package  [![pub package](https://img.shields.io/pub/v/get_it.svg)](https://pub.dev/packages/get_it) by [escamoteur](https://github.com/escamoteur)
+
 In your flutter project add the dependency:
 ```yaml
-get_it: 3.1.0
+get_it: <latest-version>
 ```
 ### Register the StateBloc with GetIt.
 ```dart
@@ -101,3 +104,4 @@ StateBloc<DarkThemeModel> stateBloc= appConfig<StateBloc<DarkThemeModel>>("darkM
 Kaboom 💣💣
 
 Now you can change the app state with StateBloc with GetIt.
+
