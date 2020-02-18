@@ -9,7 +9,7 @@ StateBloc help the Widget tree to rebuild again with the help of streams. You do
 In your flutter project add the dependency:
 
 ```yaml
-state_bloc :  0.0.7
+state_bloc :  0.0.8
   ```
 For help getting started with Flutter, view the online [documentation](https://flutter.dev).
 
@@ -19,16 +19,16 @@ For help getting started with Flutter, view the online [documentation](https://f
 import 'package:state_bloc/state_bloc.dart';
 ```
 ### **Define a [StateBloc](https://pub.dev/packages/state_bloc)**
-```
+```dart
 //Requires a initial value in it's constructor 
-StateBloc<int> counterBloc = StateBloc<int>(0);
+StateBloc<int> stateBloc = StateBloc<int>(0);
 ```
 
 ### **Listen to Data using BlocBuilder**
 ```dart
 //Define the Generics eg : int, String, Foo.
 BlocBuilder<int>(
-  stateBloc: counterBloc,
+  stateBloc: stateBloc,
   widget: (int value) {
     return Text("$value");
   },
