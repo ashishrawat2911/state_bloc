@@ -42,7 +42,7 @@ class _CounterState extends State<Counter> {
             Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Center(
-                  child: BlocBuilder<int>(
+                  child: StateBlocBuilder<int>(
                     stateBloc: stateBloc,
                     widget: (int value) {
                       return Text("$value");

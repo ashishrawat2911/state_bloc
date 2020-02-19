@@ -8,7 +8,13 @@ import 'package:flutter/material.dart';
   This callback requires a widget to return and needs a value T 
 */
 typedef OnWidgetStateChanged<T> = Widget Function(T value);
+/*
+  This callback requires a T value to return and needs a value T
+*/
 typedef ChangeState<T> = T Function(T value);
+/*
+  This callback requires a widget to return and needs a value T
+*/
 typedef ListenToState<T> = void Function(T value);
 
 /*
@@ -82,36 +88,18 @@ class StateBloc<T> {
   }
 }
 
-class BlocStreamBuilder<T> extends StatelessWidget {
-  final OnWidgetStateChanged<T> widget;
-  final StateBloc<T> stateBloc;
-
-  BlocStreamBuilder({@required this.widget, @required this.stateBloc});
-
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder<T>(
-      initialData: stateBloc.value,
-      stream: stateBloc.controller.stream,
-      builder: (context, AsyncSnapshot<T> snapshot) {
-        return widget(snapshot.data);
-      },
-    );
-  }
-}
-
 /*
 * BlocBuilder will be used when you dont want to wrap any widget that contains the streambuilder
 * */
 
 @immutable
 // ignore: must_be_immutable
-class BlocBuilder<T> extends StatelessWidget {
+class StateBlocBuilder<T> extends StatelessWidget {
   final StateBloc<T> stateBloc;
 
   final OnWidgetStateChanged<T> widget;
 
-  BlocBuilder({
+  StateBlocBuilder({
     @required this.stateBloc,
     @required this.widget,
   });
@@ -120,9 +108,10 @@ class BlocBuilder<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StatefulBuilder(
-      builder: (context, setState) {
+    return StateBlocBuilderBaseView(
+      initState: (setState) {
         if (value == null) {
+          print(stateBloc.value);
           setState(() {
             value = stateBloc.value;
           });
@@ -132,8 +121,37 @@ class BlocBuilder<T> extends StatelessWidget {
             this.value = value;
           });
         });
+      },
+      builder: (context, setState) {
         return widget(stateBloc.value);
       },
     );
   }
+}
+
+class StateBlocBuilderBaseView extends StatefulWidget {
+  const StateBlocBuilderBaseView({
+    Key key,
+    @required this.builder,
+    this.initState,
+  })  : assert(builder != null),
+        super(key: key);
+
+  final Widget Function(BuildContext context, StateSetter setState) builder;
+  final void Function(StateSetter setState) initState;
+
+  @override
+  _StateBlocBuilderBaseViewState createState() =>
+      _StateBlocBuilderBaseViewState();
+}
+
+class _StateBlocBuilderBaseViewState extends State<StateBlocBuilderBaseView> {
+  @override
+  void initState() {
+    widget.initState(setState);
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) => widget.builder(context, setState);
 }

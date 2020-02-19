@@ -1,6 +1,6 @@
 name: state_bloc
 description: StateBloc helps the Widget tree to rebuild again with the help of streams.
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/ashishrawat2911/state_bloc
 
 environment:
