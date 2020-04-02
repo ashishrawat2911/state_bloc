@@ -9,7 +9,7 @@ StateBloc help the Widget tree to rebuild again with the help of streams. You do
 In your flutter project add the dependency:
 
 ```yaml
-state_bloc :  1.0.2
+state_bloc :  1.0.3
   ```
 For help getting started with Flutter, view the online [documentation](https://flutter.dev).
 

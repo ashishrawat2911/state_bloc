@@ -39,7 +39,11 @@ class StateBloc<T> {
 
   changeStateWithoutValueProvided(T value) {
     _value = value;
-//    print(_value);
+    controller.sink.add(_value);
+  }
+
+  set value(T value) {
+    _value = value;
     controller.sink.add(_value);
   }
 
