@@ -9,7 +9,7 @@ StateBloc help the Widget tree to rebuild again with the help of streams. You do
 In your flutter project add the dependency:
 
 ```yaml
-state_bloc :  1.0.3
+state_bloc :  1.0.4
   ```
 For help getting started with Flutter, view the online [documentation](https://flutter.dev).
 
@@ -21,6 +21,7 @@ import 'package:state_bloc/state_bloc.dart';
 ### **Define a [StateBloc](https://pub.dev/packages/state_bloc)**
 ```dart
 //Requires a initial value in it's constructor 
+
 StateBloc<int> stateBloc = StateBloc<int>(0);
 ```
 
@@ -28,6 +29,7 @@ StateBloc<int> stateBloc = StateBloc<int>(0);
 You will need to pass the `stateBloc` and a `widget` to StateBlocBuilder
 ```dart
 //Define the type of data you are using in StateBloc eg : int, String, Foo.
+
 StateBlocBuilder<int>(
   stateBloc: stateBloc,
   widget: (int value) {
@@ -47,6 +49,10 @@ stateBloc.changeState(state: (value) {
 });
 ```
 ### 2. Change the state without value provided
+```dart
+stateBloc.value = value;
+```
+Or
 ```dart
 stateBloc.changeStateWithoutValueProvided(value);
 ```
